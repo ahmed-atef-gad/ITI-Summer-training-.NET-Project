@@ -1,0 +1,71 @@
+﻿@model Category
+
+<style>
+    .category-details-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .category-card {
+        width: 22rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        border-radius: 12px;
+        border: 1px solid #e0e0e0;
+        background: #f9f9f9;
+    }
+
+        .category-card .card-body {
+            padding: 2rem;
+        }
+
+        .category-card .card-title {
+            color: #2e7d32;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .category-card .card-subtitle {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+            .category-card .btn-secondary:hover {
+                background-color: #495057;
+            }
+</style>
+
+<br />
+
+<div class="d-flex justify-content-center">
+    <h2 class="text-success">Category Details</h2>
+</div>
+
+<br />
+<hr />
+<br />
+
+<div class="category-details-container">
+    <div class="card category-card">
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayNameFor(c => c.Name): @Model.Name</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayNameFor(c => c.CategoryId): @Model.CategoryId</h6>
+            @if (Model.Description != null)
+            {
+                <h6 class="card-text">@Html.DisplayNameFor(c => c.Description): @Model.Description</h6>
+            }
+            <div class="d-flex justify-content-center mt-3">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-secondary">Back</a>
+            </div>
+        </div>
+    </div>
+</div>

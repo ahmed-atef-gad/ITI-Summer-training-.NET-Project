@@ -1,0 +1,89 @@
+﻿@using System.IO
+@model Product
+
+<style>
+    .product-details-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    .product-card {
+        width: 22rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        border-radius: 12px;
+        border: 1px solid #e0e0e0;
+        background: #f9f9f9;
+    }
+    .product-card .card-body {
+        padding: 2rem;
+    }
+    .product-card .card-title {
+        color: #2e7d32;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    .product-card .card-subtitle {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .product-card .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        padding: 0.5rem 1.5rem;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: background 0.2s;
+    }
+    .product-card .btn-secondary:hover {
+        background-color: #495057;
+    }
+</style>
+
+<br />
+
+<div class="d-flex justify-content-center">
+    <h2 class="text-success">Product Details</h2>
+</div>
+
+<br />
+<hr />
+<br />
+
+<div class="product-details-container">
+    <div class="card product-card">
+        <div class="card-body">
+            <h5 class="card-title">
+                @Html.DisplayNameFor(p => p.Title): @Model.Title
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                @Html.DisplayNameFor(p => p.ProductId): @Model.ProductId
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+                @Html.DisplayNameFor(p => p.Price): @Model.Price
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+                @Html.DisplayNameFor(p => p.Description): @Model.Description
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+                @Html.DisplayNameFor(p => p.Quantity): @Model.Quantity
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+                @Html.DisplayNameFor(p => p.Category): @Model.Category.Name
+            </h6>
+
+            @if (!string.IsNullOrEmpty(Model.ImagePath) && System.IO.File.Exists(Context.RequestServices.GetService<IWebHostEnvironment>().WebRootPath + Model.ImagePath.Replace("~", "")))
+            {
+                <img src="@Url.Content(Model.ImagePath)" alt="Product Image" style="max-width:300px;" />
+            }
+            else
+            {
+                <p>No image uploaded.</p>
+            }
+    
+         
+            <div class="d-flex justify-content-center mt-3">
+                <a asp-controller="Product" asp-action="Index" class="btn btn-secondary mt-4">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
