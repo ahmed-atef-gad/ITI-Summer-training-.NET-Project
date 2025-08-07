@@ -65,12 +65,6 @@ namespace Project.Controllers
         [HttpPost]
         public IActionResult Edit(Category category)
         {
-            var ExistCateg = db.Categories.FirstOrDefault(c => c.Name == category.Name);
-            if (ExistCateg != null)
-            {
-                ModelState.AddModelError("", "Department Already Exist");
-                return View();
-            }
 
             if (category != null && ModelState.IsValid)
             {
